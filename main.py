@@ -20,7 +20,9 @@ import textwrap
 
 def load_button_click():
     text = textwrap.wrap(text=text_box.get('1.0', 'end-1c'), width=50)
+    #text stores the string from the Description entry 
     text2 = ""
+    #text2 applies a line split in the elements from the text when its too long
     for i in text:
         text2 = text2 + i + '\n'
     msg = f"Pet's Name:{animal_name_var.get()}\n\n" \
@@ -28,19 +30,34 @@ def load_button_click():
           f"Age:{dog_age_var.get()}\n\n" \
           f"Date:{Date_var.get()}\n\n" \
           f"Description:{text2}"
+    #stores all text from all entries
+    
     messagebox.showinfo(title="Test1", message=msg)
     global craft_img
     craft_img = Image.new("RGB", (480, 480), (240, 240, 240))
+    #creates the base for the text to get appied to 
+    
     img_w, img_h = ask_file_into_tk_image.size
+    # stores the height and the width of the image
+    
     x, y = craft_img.size
+    #stores the height and width of the base image
+    
     offset = ((x - img_w) // 2, (y - img_h) // int(1.4))
+    creates the amount the image needs to be offset to work with the image
+    
     craft_img.paste(im=ask_file_into_tk_image, box=offset)
     craft_img_1 = ImageDraw.Draw(craft_img)
+    #Draws on top of the selected image
 
     font = ImageFont.truetype("C:/Windows/Fonts/BELL.TTF", 18)
+    #stores the font for the image
 
     pos = (0, 0)
+    #creates a position on the image
+    
     color = (0, 0, 0)
+    #Stores the color for the text
 
     craft_img_1.text(pos, f"{msg}", fill=color, font=font)
 
@@ -49,13 +66,19 @@ def load_button_click():
 #saves file to the computer and opens it so the user
 def save_button_click():
     file_name = tkinter.simpledialog.askstring(title="File name", prompt="What would you like to name your file? :")
+    #stores the user input for the filename
+    
     file_name = file_name + ".pdf"
+    #stores the filename plus the desired file extention
+    
     Image.Image.save(craft_img, file_name)
     time.sleep(6)
     os.startfile(f"{file_name}")
 
 def help_button_click():
     help_root = tkinter.Tk()
+    #creates the variable to store the root for the help function
+    
     help_root.title("Help")
     help_label = tkinter.Label(help_root,text="Users should fill out each entry with the appropriate data for its category.\n\n"
                                               "*The load to file button* :temporary store all text entries to prepare to save file\n"
@@ -63,17 +86,25 @@ def help_button_click():
                                  "the user can preview the file before saving it to their preferred destination\n\n"
                                               "*The Create Folder function* : Creates a directory in the even a user wants\n"
                                               "have a specific directory for these files\n\n"))
+    #creates the help label
+    
     help_label.grid(column=0,row=0)
 
 def create_folder():
     path = tkinter.simpledialog.askstring(title="Folder Creator",prompt="What would you like for the file name?")
+    #stores the desired directory name
+    
     path2 = tkinter.filedialog.askdirectory(title="Where to create Folder")
+    #Stores the directory where path will be stored in
+    
     path2 += f"/{path}"
     os.makedirs(path2)
 
     print(f"Directory {path2} created")
 
 checkin = tkinter.Tk()
+#stores the checkin root
+
 checkin.title("Animal Data Verification")
 tkinter.Label(checkin, text="Do you want to create an entry of data for your pet?").pack()
 
@@ -93,9 +124,12 @@ while checkin is True:
 # Grabs picture before the creation of root
 ask_file = askopenfilename(title="Find picture of your animal",filetypes=(
         ('JPEG', ('*.jpg', '*.jpeg', '*.jpe')), ('PNG', '*.png'),("all files", "*.*")))
+#stores the filename that is selected from the askopenfilename function
 
 # Setup and configuration of root
 root = tkinter.Tk()
+#stores the root for the gui
+
 root.title("Pet Meta-Data")
 root.geometry("500x500")
 root.configure(relief="sunken", borderwidth=10, background="#ADD8E6")
@@ -111,12 +145,16 @@ root.rowconfigure("all", weight=2)
 
 # Displays photo
 ask_file_into_tk_image = Image.open(ask_file).resize((200, 200))
+#stores the image to be compatible with the TK module
+
 ask_file_into_tk_image1 = ImageTk.PhotoImage(ask_file_into_tk_image, height=200, width=200)
 tkinter.Label(root, image=ask_file_into_tk_image1, borderwidth=2, relief="solid", anchor="e", justify="right").grid(
     column=5, row=1, rowspan=2)
 
 # Title of app
 label = tkinter.Label(root, text="Pet Pic data", font=20, justify="center", anchor="center", background="#ADD8E6")
+#creates the label to be the header of the program
+
 label.grid(column=4, row=0, sticky='')
 
 # Animal name
