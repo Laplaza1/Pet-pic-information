@@ -1,2 +1,2 @@
 # Pet-pic-information
-This is a program to create a single file that contains text and the picture of a selected picture and save it to a users computer
+The purpose behind this program is to output the text and picture about the given picture of a pet, and allow the user to save it
