@@ -64,12 +64,12 @@ def help_button_click():
     help_label.grid(column=0,row=0)
 
 def create_folder():
-    #path = "C:/Program Files/"
-    #path += tkinter.simpledialog.askstring(title="Folder Creator",prompt="What would you like for the file name?")
-    #path = tkinter.filedialog.askdirectory()
+    path = tkinter.simpledialog.askstring(title="Folder Creator",prompt="What would you like for the file name?")
+    path2 = tkinter.filedialog.askdirectory(title="Where to create Folder")
+    path2 += f"/{path}"
+    os.makedirs(path2)
 
-    #print("Directory '% s' created" % path)
-    pass
+    print(f"Directory {path2} created")
 
 checkin = tkinter.Tk()
 checkin.title("Animal Data Verification")
