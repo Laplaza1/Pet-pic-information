@@ -60,7 +60,9 @@ def help_button_click():
     help_label = tkinter.Label(help_root,text="Users should fill out each entry with the appropriate data for its category.\n\n"
                                               "*The load to file button* :temporary store all text entries to prepare to save file\n"
                                  "\n *The save button* :saves the image and text document to a pdf file then opens it so\n "
-                                 "the user can preview the file before saving it to their preferred destination\n\n")
+                                 "the user can preview the file before saving it to their preferred destination\n\n"
+                                              "*The Create Folder function* : Creates a directory in the even a user wants\n"
+                                              "have a specific directory for these files\n\n"))
     help_label.grid(column=0,row=0)
 
 def create_folder():
