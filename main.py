@@ -1,12 +1,15 @@
 import os
-import time
-import tkinter
+#Allows user to save file and open file
 from tkinter import *
+#For the display of the GUI
 from tkinter import simpledialog, messagebox
+#Allows for the display of help function
 from tkinter.filedialog import askopenfilename
+#Allow user to collect the filename of a selected picture
 from PIL import ImageTk, Image, ImageFont, ImageDraw, ImageShow
+#Shows selected image on the TK root and creates the Image to display the Image and text
 import textwrap
-
+#Wraps text around image
 
 #set selection for yes to continue to main gui or no to quit
 #store selected picture as variable
